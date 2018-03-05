@@ -1,8 +1,9 @@
 import React from 'react';
-
 import './info-modal.css';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default function InfoModal(props) {
+export function InfoModal(props) {
     return <div className="overlay" id="modal">
         <div className="content">
           <h3>What do I do?</h3>
@@ -23,10 +24,12 @@ export default function InfoModal(props) {
               </li>
             </ul>
             <p>So, Are you ready?</p>
-            <a className="close" href="#" onClick={() => document.getElementById('modal').style.display = 'none'}>
+            <a className="close" href="#" onClick={() => props.dispatch(actions.toggleModal(false))}>
               Got It!
             </a>
           </div>
         </div>
       </div>;
 }
+
+export default connect()(InfoModal);

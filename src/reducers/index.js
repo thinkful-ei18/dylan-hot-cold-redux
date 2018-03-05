@@ -3,7 +3,8 @@ import * as actions from '../actions';
 const initialState = {
   userGuesses: [],
   feedback: 'Make Your Guess!',
-  answer: Math.floor(Math.random() * 100)
+  answer: Math.floor(Math.random() * 100),
+  modalOpen: false
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -18,6 +19,8 @@ export const gameReducer = (state = initialState, action) => {
     });
   } else if (action.type === actions.ADD_FEEDBACK) {
     return Object.assign({}, state, { feedback: action.feedback });
+  } else if (action.type === actions.TOGGLE_MODAL) {
+    return Object.assign({}, state, {modalOpen: action.modalOpen});
   }
   return state;
 };

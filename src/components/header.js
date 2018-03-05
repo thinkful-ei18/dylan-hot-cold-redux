@@ -1,11 +1,11 @@
 import React from 'react';
-
 import TopNav from './top-nav';
 import InfoModal from './info-modal';
-
 import './header.css';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default function Header(props) {
+export function Header(props) {
   return (
     <header>
       <TopNav newGame={() => props.newGame()} />
@@ -14,3 +14,10 @@ export default function Header(props) {
     </header>
   );
 }
+
+const mapStateToProps = (state) => ({
+  modalOpen: state.modalOpen
+});
+
+export default connect(mapStateToProps)(Header);
+
