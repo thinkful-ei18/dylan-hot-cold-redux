@@ -28,25 +28,9 @@ export default class Game extends React.Component {
   }
 
   generateGoodFeedback(value) {
-    const distance = Math.abs(value - this.state.answer);
-    if (distance === 0) {
-      return 'You Win!';
-    }
-    if (distance < 15) {
-      return 'Hot';
-    }
-    if (distance < 30 ) {
-      return 'Warm';
-    } 
-    if (distance < 45) {
-      return 'Cold';
-    } else {
-      return 'Horrible';
-    }
-
-    const distanceFeedback = {
-      
-    }
+    const distanceRounded = Math.ceil(Math.abs(value - this.state.answer) / 10) * 10 > 40 ? 50 : Math.ceil(Math.abs(value - this.state.answer) / 10) * 10;
+    const feedbackObj = { 0: 'You Win!', 10: 'Hot', 20: 'Warm', 30: 'Chilly', 40: 'Cold', 50: 'Horrible' };
+    return feedbackObj[distanceRounded]
   }
 
   newGame() {
